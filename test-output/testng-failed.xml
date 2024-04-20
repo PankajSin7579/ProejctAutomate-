@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [Testing]" guice-stage="DEVELOPMENT">
+  <test name="Regression(failed)">
+    <parameter name="browser" value="chrome"/>
+    <parameter name="url" value="https://www.softwaretestinghelp.com/testng-example-to-create-testng-xml/"/>
+    <classes>
+      <class name="com.opencart.tests.LoginPageTest">
+        <methods>
+          <include name="startBrowser" invocation-numbers="0"/>
+        </methods>
+      </class> <!-- com.opencart.tests.LoginPageTest -->
+    </classes>
+  </test> <!-- Regression(failed) -->
+</suite> <!-- Failed suite [Testing] -->
