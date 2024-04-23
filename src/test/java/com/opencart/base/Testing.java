@@ -1,4 +1,6 @@
-Class Testing{
+package com.opencart.base;
+
+public class Testing{
 
   public void add(){
 
