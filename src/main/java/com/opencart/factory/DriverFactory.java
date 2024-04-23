@@ -1,66 +1,70 @@
 package com.opencart.factory;
 
 import java.io.File;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
+
+import javax.print.attribute.HashAttributeSet;
 
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
-import org.testng.ITestContext;
-import org.testng.ITestListener;
-import org.testng.ITestResult;
+import org.openqa.selenium.io.FileHandler;
+import org.testng.annotations.Test;
 
-public class DriverFactory implements ITestListener {
+public class DriverFactory  {
 	
 	WebDriver driver;
 	
-	public void screenShotTaker() {
+	public String screenShotTaker(String methodName) {
 		
-		TakesScreenshot scrShot =((TakesScreenshot)driver);
-			File srcFile = scrShot.getScreenshotAs(OutputType.FILE);
-			
-		
+		 File file = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+		 String path = System.getProperty("user.dir")+"/screenshot/"+methodName+"_"+ System.currentTimeMillis()+".png";
+		 File destination = new File(path);
+		 
+		 try {
+			 FileHandler.copy(file, destination);
+		 }
+		 catch (IOException e) {
+			 e.printStackTrace();
+			// TODO: handle exception
+		}
+		 return path;
 	}
-
-	@Override
-	public void onTestStart(ITestResult result) {
-		// TODO Auto-generated method stub
+	
+	@Test
+	public void fetchKeyValues() {
 		
-	}
-
-	@Override
-	public void onTestSuccess(ITestResult result) {
-		// TODO Auto-generated method stub
+		HashMap<String, String> hm= new HashMap<String, String>();
 		
-	}
-
-	@Override
-	public void onTestFailure(ITestResult result) {
-		// TODO Auto-generated method stub
+		hm.put("1", "Pankaj");
+		hm.put("2", "Vinod");
+		hm.put("", "adadas");
+		hm.put("4", null);
+		hm.put(null, null);
+		hm.put("5", null);
+		hm.put("", "SDSS");
 		
-	}
-
-	@Override
-	public void onTestSkipped(ITestResult result) {
-		// TODO Auto-generated method stub
+		System.out.println(hm.keySet());
+		System.out.println(hm);
+		System.out.println(hm.get("1"));
+		System.out.println("**********************************");
 		
-	}
-
-	@Override
-	public void onTestFailedButWithinSuccessPercentage(ITestResult result) {
-		// TODO Auto-generated method stub
+		Set<Object> set = new HashSet<Object>();
+		set.add("Pankaj");
+		set.add("Rahul");
+		set.add(20);
+		set.add(20);
+		set.add("Pankaj");
+		set.add(null);
 		
+		Iterator<Object> it = set.iterator();
+		while(it.hasNext()) {
+			Object name = it.next();
+			System.out.println(name);
+		}
 	}
-
-	@Override
-	public void onStart(ITestContext context) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void onFinish(ITestContext context) {
-		// TODO Auto-generated method stub
-		
-	}
-
 }
