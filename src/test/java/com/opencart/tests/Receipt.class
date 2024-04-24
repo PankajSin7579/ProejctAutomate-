@@ -1,1 +1,10 @@
+package com.opencart.tests;
 
+class Receipt{
+
+public void transaction(){
+System.out.println("Transactions listed");
+
+}
+
+}
