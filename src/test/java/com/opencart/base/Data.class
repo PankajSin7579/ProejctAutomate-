@@ -1,0 +1,7 @@
+class Data {
+
+public void add(){
+int i =10;
+}
+
+}
